@@ -1,24 +1,26 @@
+# main.tf
+
 provider "aws" {
-  region = "us-east-1"
+  region = var.region
 }
 
-# Create VPC with 2 Public and 2 Private Subnets
+# Create VPC with Public and Private Subnets
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
   name = "ecs-vpc"
-  cidr = "10.0.0.0/16"
+  cidr = var.vpc_cidr
 
   azs             = ["us-east-1a", "us-east-1b"]
-  private_subnets = ["10.0.1.0/24", "10.0.2.0/24"]
-  public_subnets  = ["10.0.3.0/24", "10.0.4.0/24"]
+  private_subnets = var.private_subnet_cidr
+  public_subnets  = var.public_subnet_cidr
   enable_nat_gateway = true
   single_nat_gateway = true
 }
 
 # ECS Cluster
 resource "aws_ecs_cluster" "ecs_cluster" {
-  name = "ecs-cluster"
+  name = var.ecs_cluster_name
 }
 
 # ALB Security Group (allows HTTP traffic)
@@ -85,7 +87,7 @@ resource "aws_ecs_task_definition" "ecs_task" {
   
   container_definitions = jsonencode([{
     name      = "example-container"
-    image     = "nginx:latest"  # Example image, replace with your container image
+    image     = var.container_image  # Use the container image from variables
     portMappings = [{
       containerPort = 80
       hostPort      = 80
@@ -98,7 +100,7 @@ resource "aws_ecs_service" "ecs_service" {
   name            = "ecs-service"
   cluster         = aws_ecs_cluster.ecs_cluster.id
   task_definition = aws_ecs_task_definition.ecs_task.arn
-  desired_count   = 2
+  desired_count   = var.desired_count
   launch_type     = "FARGATE"
 
   network_configuration {
