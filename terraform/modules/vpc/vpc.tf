@@ -3,9 +3,11 @@ resource "aws_vpc" "main" {
   enable_dns_support = true
   enable_dns_hostnames = true
 }
-
+data "aws_availability_zones" "available" {
+  state = "available"
+}
 resource "aws_subnet" "public" {
-  count = 2
+  count = var.public_subnet_count
   vpc_id = aws_vpc.main.id
   cidr_block = var.public_subnet_cidr_blocks[count.index]
   availability_zone = element(data.aws_availability_zones.available.names, count.index)
@@ -16,7 +18,7 @@ resource "aws_subnet" "public" {
 }
 
 resource "aws_subnet" "private" {
-  count = 2
+  count = var.private_subnet_count
   vpc_id = aws_vpc.main.id
   cidr_block = var.private_subnet_cidr_blocks[count.index]
   availability_zone = element(data.aws_availability_zones.available.names, count.index)
