@@ -20,6 +20,12 @@ terraform/
 └── README.md                 # Documentation (optional)
 
 AWS CLI/SDK configured. 
+export AWS_ACCESS_KEY_ID="your-access-key"
+export AWS_SECRET_ACCESS_KEY="your-secret-key"
+export AWS_DEFAULT_REGION="us-west-2"
+
+Alternatively, you can use the aws configure command to set up your credentials.
+
 Terraform installed and initialized. 
 Run terraform init to initialize the configuration.
 Run terraform validate and terraform fmt to check if any syntax issue or indentation issue.
