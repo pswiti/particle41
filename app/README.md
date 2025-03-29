@@ -26,7 +26,7 @@ curl http://127.0.0.1:5000/
 Create a Dockerfile for the Flask application.
 You need to create a requirements.txt file to list the dependencies of the Flask application. 
 Build and Run the Docker Container
-docker build -t SimpleTimeService' .
+docker build -t SimpleTimeService .
 docker run -p 5000:5000 SimpleTimeService
 Check it browser http://localhost:5000
 
