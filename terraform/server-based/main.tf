@@ -4,14 +4,14 @@ provider "aws" {
   region = var.region
 }
 
-# Create VPC with Public and Private Subnets
+# Create VPC with 1 Public and 1 Private Subnet
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
   name = "ecs-vpc"
   cidr = var.vpc_cidr
 
-  azs             = ["us-east-1a", "us-east-1b"]
+  azs             = ["us-east-1a"]  # Only use 1 AZ for simplicity
   private_subnets = var.private_subnet_cidr
   public_subnets  = var.public_subnet_cidr
   enable_nat_gateway = true
