@@ -15,13 +15,13 @@ variable "vpc_cidr" {
 variable "public_subnet_cidr" {
   description = "CIDR blocks for the public subnets"
   type        = list(string)
-  default     = ["10.0.3.0/24", "10.0.4.0/24"]
+  default     = ["10.0.3.0/24"]
 }
 
 variable "private_subnet_cidr" {
   description = "CIDR blocks for the private subnets"
   type        = list(string)
-  default     = ["10.0.1.0/24", "10.0.2.0/24"]
+  default     = ["10.0.1.0/24"]
 }
 
 variable "container_image" {
@@ -33,7 +33,7 @@ variable "container_image" {
 variable "desired_count" {
   description = "Number of ECS task instances"
   type        = number
-  default     = 2
+  default     = 1
 }
 
 variable "ecs_cluster_name" {
