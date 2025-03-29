@@ -13,7 +13,7 @@ resource "aws_iam_role" "lambda_exec" {
     ]
   })
 }
-# Lambda function definition
+
 resource "aws_iam_role_policy_attachment" "lambda_basic_execution" {
   role       = aws_iam_role.lambda_exec.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
@@ -29,7 +29,7 @@ resource "aws_security_group" "lambda_sg" {
   name        = "lambda_sg"
   description = "Security group for Lambda function"
 }
-
+# Lambda function definition
 resource "aws_lambda_function" "main" {
   filename         = var.lambda_zip_file
   function_name    = "my-lambda-function"
