@@ -1,11 +1,14 @@
 **Minimalist Application Development / Docker / Kubernetes**
 **Tiny App Development: 'SimpleTimeService'**
 ##Install Flask: First, make sure you have Flask installed. You can install it using pip if you don't have it yet:
-pip install flask
+pip3 install flask
+pip3 show flask
+
+python3 --version
 
 ##Create the Python file (app.py):
 ##Run the application: In the terminal, run the application by executing:
-python app.py
+python3 app.py
 
 ##Testing: Once the server is running, you can visit http://127.0.0.1:5000/ in your browser or use a tool like curl to see the JSON response:
 curl http://127.0.0.1:5000/
