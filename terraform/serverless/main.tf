@@ -61,7 +61,7 @@ resource "aws_iam_role" "lambda_role" {
 resource "aws_lambda_function" "lambda_function" {
   function_name = "my_lambda_function"
   role          = aws_iam_role.lambda_role.arn
-  package_type  = "Image"  # Using a container image
+  package_type  = "nginx:latest"  # Using a container image
   image_uri     = "your_ecr_image_uri"  # Replace with your ECR image URI
 
   vpc_config {
