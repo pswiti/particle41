@@ -1,24 +1,23 @@
-from flask import Flask, request, jsonify
-from datetime import datetime
+# Use an official Python runtime as the base image
+FROM python:3.9
 
-app = Flask(__name__)
+# Create a non-root user to run the application
+RUN useradd -m appuser
 
-@app.route('/')
-def SimpleTimeService():
-    # Get the current timestamp
-    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    
-    # Get the IP address of the client (visitor)
-    ip_address = request.remote_addr
-    
-    # Create the response dictionary
-    response = {
-        "timestamp": timestamp,
-        "ip": ip_address
-    }
-    
-    # Return the response as JSON
-    return jsonify(response)
+# Set the working directory inside the container
+WORKDIR /app
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)  #allow external access
+# Copy the current directory content into the container at /app
+COPY --chown=appuser:appuser . /app
+
+#Switch to the non-root user
+USER appuser
+
+# Install Flask inside the container
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Expose the port Flask will run on
+EXPOSE 5000
+
+# Command to run the application
+CMD ["python", "app.py"]
