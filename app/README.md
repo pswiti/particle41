@@ -1,10 +1,9 @@
 **Minimalist Application Development / Docker / Kubernetes**
 **Tiny App Development: 'SimpleTimeService'**
+python3 --version # Check python version
 ##Install Flask: First, make sure you have Flask installed. You can install it using pip if you don't have it yet:
 pip3 install flask
-pip3 show flask
-
-python3 --version
+pip3 show flask # Check if flask installed
 
 ##Create the Python file (app.py):
 ##Run the application: In the terminal, run the application by executing:
@@ -19,19 +18,13 @@ curl http://127.0.0.1:5000/
   "ip": "<the IP address of the visitor>"
 }
 
-{
-  "timestamp": "2025-03-28 15:30:45",
-  "ip": "127.0.0.1"
-}
-
-
 **Dockerize SimpleTimeService**
 Create a Dockerfile for the Flask application.
 You need to create a requirements.txt file to list the dependencies of the Flask application. 
 Build and Run the Docker Container
 docker build -t simpletimeservice .
 docker run -d -p 5000:5000 simpletimeservice
-Check it browser http://localhost:5000
+Check in browser http://localhost:5000
 
 Verifying the Non-root User
 docker exec -it <container_id> whoami
@@ -40,8 +33,8 @@ docker exec -it <container_id> whoami
 Log In to DockerHub from the Command Line
 docker login
 Tag Your Docker Image
-docker tag simpletimeservice appuser/simpletimeservice:latest
+docker tag simpletimeservice appuser/simpletimeservice:latest # Make sure repo should be present in dockerhub
 Push the Docker Image to DockerHub
-docker push yourusername/simpletimeservice:latest
+docker push appuser/simpletimeservice:latest
 Verify the Image on DockerHub
 
