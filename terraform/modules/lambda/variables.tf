@@ -12,3 +12,8 @@ variable "lambda_zip_file" {
   type        = string
   description = "The Lambda zip file for deployment."
 }
+variable "region" {
+  description = "The AWS region where resources will be created."
+  type        = string
+}
+
