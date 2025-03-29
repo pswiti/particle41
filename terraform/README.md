@@ -26,6 +26,8 @@ export AWS_DEFAULT_REGION="us-west-2"
 
 Alternatively, you can use the aws configure command to set up your credentials.
 
+zip lambda.zip index.js 
+
 Terraform installed and initialized. 
 Run terraform init to initialize the configuration.
 Run terraform validate and terraform fmt to check if any syntax issue or indentation issue.
