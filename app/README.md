@@ -40,8 +40,8 @@ docker exec -it <container_id> whoami
 Log In to DockerHub from the Command Line
 docker login
 Tag Your Docker Image
-docker tag simple-service yourusername/simple-service:latest
+docker tag simpletimeservice appuser/simpletimeservice:latest
 Push the Docker Image to DockerHub
-docker push yourusername/simple-service:latest
+docker push yourusername/simpletimeservice:latest
 Verify the Image on DockerHub
 
