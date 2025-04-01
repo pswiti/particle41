@@ -22,12 +22,14 @@ variable "lambda_zip_file" {
   type        = string
   description = "The Lambda zip file for deployment."
 }
-variable "public_subnets" {
-  type        = list(string)
-  description = "The list of public subnets."
-}
+# Number of public subnets to create
+variable "public_subnet_count" {
+  type        = number
+  description = "The number of public subnets to create"
+  }
 
-variable "private_subnets" {
-  type        = list(string)
-  description = "The list of private subnets."
-}
+# Number of private subnets to create
+variable "private_subnet_count" {
+  type        = number
+  description = "The number of private subnets to create"
+  }
